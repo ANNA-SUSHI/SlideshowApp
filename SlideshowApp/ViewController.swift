@@ -50,6 +50,13 @@ class ViewController: UIViewController {
         // 動作中のタイマーを1つに保つために、 timer が存在しない場合だけ、タイマーを生成して動作させる
                 if self.timer == nil {
                     self.timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(updateTimer(_:)), userInfo: nil, repeats: true)
+                    // ボタンをスライドショー開始状態にする
+                          play.setTitle("Stop", for: .normal)
+                } else {
+                    // スライドショー停止
+                    timer.invalidate()
+                    timer = nil
+                    play.setTitle("Play", for: .normal)
                 }
     }
     
@@ -77,7 +84,27 @@ class ViewController: UIViewController {
         showImage()
     
     }
+    @IBAction  func  unwind (_  segue :  UIStoryboardSegue )  {
+    }
+    @IBAction func showpicture(_ sender: Any) {
+        let resultViewController = self.storyboard?.instantiateViewController(withIdentifier: "ResultViewController") as! ResultViewController
+                self.present(resultViewController, animated: true, completion: nil)
+    }
     
+    // 画面遷移時の処理
+        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            // スライドショーを停止してから画面遷移する
+            if timer != nil {
+                // スライドショー停止
+                timer.invalidate()
+                timer = nil
+                // ボタンをスライドショー停止状態にする
+                play.setTitle("再生", for: .normal)
+            }
+            // 表示中の画像を引き継ぎ
+            let imageViewController = segue.destination as! ResultViewController
+            imageViewController.image = imageview.image
+        }
     
 }
 

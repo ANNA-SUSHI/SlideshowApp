@@ -13,9 +13,14 @@ class ResultViewController: UIViewController {
     
     @IBOutlet weak var returnbutton: UIButton!
     
+    // 引き継ぎ画像
+        var image: UIImage!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+       
+        imageview.image = image
+        
         // Do any additional setup after loading the view.
     }
     
