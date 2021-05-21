@@ -88,10 +88,10 @@ class ViewController: UIViewController {
     }
     @IBAction func showpicture(_ sender: Any) {
         let resultViewController = self.storyboard?.instantiateViewController(withIdentifier: "ResultViewController") as! ResultViewController
-                self.present(resultViewController, animated: true, completion: nil)
+                
         
         resultViewController.image = imageview.image
-                self.present(resultViewController, animated: true, completion: nil)
+        self.present(resultViewController, animated: true, completion: nil)
     }
     
     // 画面遷移時の処理
